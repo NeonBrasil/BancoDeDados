@@ -13,7 +13,7 @@ erDiagram
     }
     PERSON ||--o{ NAMED-DRIVER : is
     PERSON {
-        ID código da disciplina
+        ID codigo da disciplina
         string NAME
     }
 ```
