@@ -5,7 +5,7 @@ TESTE
 ---
 ``` mermaid
 erDiagram
-    HISTÓRICO ESCOLAR ||--o{ NAMED-DRIVER : allows
+    HISTORICO ESCOLAR ||--o{ NAMED-DRIVER : allows
     ALUNO {
         ID ID
         string NAME
