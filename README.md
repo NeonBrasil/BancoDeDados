@@ -5,7 +5,15 @@ TESTE
 ---
 ``` mermaid
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+    HISTÓRICO ESCOLAR ||--o{ NAMED-DRIVER : allows
+    ALUNO {
+        ID ID
+        string NAME
+        int SEMESTRE
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        ID código da disciplina
+        string NAME
+    }
 ```
