@@ -5,14 +5,14 @@ TESTE
 ---
 ``` mermaid
 erDiagram
-    HISTORICO_ESCOLAR ||--o{ NAMED-DRIVER : allows
+    ALUNO ||--o{ HISTORICO_ESCOLAR : allows
     ALUNO {
         ID ID
         string NAME
         int SEMESTRE
     }
-    PERSON ||--o{ NAMED-DRIVER : is
-    PERSON {
+    DISCIPLINA ||--o{ HISTORICO_ESCOLAR : is
+    DISCIPLINA {
         ID codigo da disciplina
         string NAME
     }
