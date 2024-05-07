@@ -17,7 +17,7 @@ erDiagram
     Cursos {
         ID_curso INT
         nome VARCHAR
-        código VARCHAR
+        codigo VARCHAR
     }
     Departamentos {
         ID_departamento INT
