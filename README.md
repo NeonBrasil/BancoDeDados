@@ -8,7 +8,7 @@ erDiagram
     Alunos {
         ID_aluno INT
         nome VARCHAR
-        matrícula VARCHAR
+        matricula VARCHAR
     }
     Professores {
         ID_professor INT
@@ -28,7 +28,7 @@ erDiagram
     Disciplinas {
         ID_disciplina INT
         nome VARCHAR
-        código VARCHAR
+        codigo VARCHAR
     }
     Matrizes_Curriculares {
         ID_matriz INT
@@ -37,7 +37,7 @@ erDiagram
         semestre INT
         ano INT
     }
-    Histórico_Escolar {
+    Historico_Escolar {
         ID_aluno INT
         ID_disciplina INT
         semestre INT
@@ -56,14 +56,14 @@ erDiagram
         ID_professor_orientador INT
     }
 
-    Alunos ||--o{ Histórico_Escolar : "Cursa"
-    Histórico_Escolar ||--|| Disciplinas : "Inclui"
+    Alunos ||--o{ Historico_Escolar : "Cursa"
+    Historico_Escolar ||--|| Disciplinas : "Inclui"
     Professores ||--o{ Disciplinas_Ministradas : "Ministra"
     Professores ||--o{ TCC : "Orienta"
     Departamentos ||--o{ Professores : "Chefiado por"
     Departamentos ||--o{ Cursos : "Oferece"
     Cursos ||--|| Matrizes_Curriculares : "Possui"
-    Matrizes_Curriculares ||--|| Disciplinas : "Contém"
+    Matrizes_Curriculares ||--|| Disciplinas : "Contem"
 
 ```
 
