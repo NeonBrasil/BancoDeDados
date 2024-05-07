@@ -5,17 +5,66 @@ TESTE
 ---
 ``` mermaid
 erDiagram
-    ALUNO ||--o{ HISTORICO_ESCOLAR : allows
-    ALUNO {
-        ID ID
-        string NAME
-        int SEMESTRE
+    Alunos {
+        ID_aluno INT
+        nome VARCHAR
+        matrícula VARCHAR
     }
-    DISCIPLINA ||--o{ HISTORICO_ESCOLAR : is
-    DISCIPLINA {
-        ID codigo da disciplina
-        string NAME
+    Professores {
+        ID_professor INT
+        nome VARCHAR
     }
+    Cursos {
+        ID_curso INT
+        nome VARCHAR
+        código VARCHAR
+    }
+    Departamentos {
+        ID_departamento INT
+        nome VARCHAR
+        ID_chefe INT
+        ID_curso INT
+    }
+    Disciplinas {
+        ID_disciplina INT
+        nome VARCHAR
+        código VARCHAR
+    }
+    Matrizes_Curriculares {
+        ID_matriz INT
+        ID_curso INT
+        ID_disciplina INT
+        semestre INT
+        ano INT
+    }
+    Histórico_Escolar {
+        ID_aluno INT
+        ID_disciplina INT
+        semestre INT
+        ano INT
+        nota_final FLOAT
+    }
+    Disciplinas_Ministradas {
+        ID_professor INT
+        ID_disciplina INT
+        semestre INT
+        ano INT
+    }
+    TCC {
+        ID_grupo INT
+        ID_aluno INT
+        ID_professor_orientador INT
+    }
+
+    Alunos ||--o{ Histórico_Escolar : "Cursa"
+    Histórico_Escolar ||--|| Disciplinas : "Inclui"
+    Professores ||--o{ Disciplinas_Ministradas : "Ministra"
+    Professores ||--o{ TCC : "Orienta"
+    Departamentos ||--o{ Professores : "Chefiado por"
+    Departamentos ||--o{ Cursos : "Oferece"
+    Cursos ||--|| Matrizes_Curriculares : "Possui"
+    Matrizes_Curriculares ||--|| Disciplinas : "Contém"
+
 ```
 
 EXEMPLO DE COMO DEVE SER:
