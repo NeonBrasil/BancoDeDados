@@ -6,54 +6,54 @@ TESTE
 ``` mermaid
 erDiagram
     Alunos {
-        ID_aluno INT
+        ID_aluno ID
         nome VARCHAR
         matricula VARCHAR
     }
     Professores {
-        ID_professor INT
+        ID_professor ID
         nome VARCHAR
     }
     Cursos {
-        ID_curso INT
+        ID_curso ID
         nome VARCHAR
         codigo VARCHAR
     }
     Departamentos {
-        ID_departamento INT
+        ID_departamento ID
         nome VARCHAR
         ID_chefe INT
         ID_curso INT
     }
     Disciplinas {
-        ID_disciplina INT
+        ID_disciplina ID
         nome VARCHAR
         codigo VARCHAR
     }
     Matrizes_Curriculares {
-        ID_matriz INT
-        ID_curso INT
-        ID_disciplina INT
+        ID_matriz ID
+        ID_curso ID
+        ID_disciplina ID
         semestre INT
         ano INT
     }
     Historico_Escolar {
-        ID_aluno INT
-        ID_disciplina INT
+        ID_aluno ID
+        ID_disciplina ID
         semestre INT
         ano INT
         nota_final FLOAT
     }
     Disciplinas_Ministradas {
-        ID_professor INT
-        ID_disciplina INT
+        ID_professor ID
+        ID_disciplina ID
         semestre INT
         ano INT
     }
     TCC {
-        ID_grupo INT
-        ID_aluno INT
-        ID_professor_orientador INT
+        ID_grupo ID
+        ID_aluno ID
+        ID_professor_orientador ID
     }
 
     Alunos ||--o{ Historico_Escolar : "Cursa"
