@@ -5,65 +5,86 @@ TESTE
 ---
 ``` mermaid
 erDiagram
+
+    Alunos ||--o{ Matriculas : "está matriculado"
+    Alunos ||--o{ TCCs : "participa"
+    Professores ||--o{ Departamentos : "chefia"
+    Professores ||--o{ DisciplinasMinistradas : "ministra"
+    Professores ||--o{ TCCs : "orienta"
+    Departamentos ||--|{ Cursos : "inclui"
+    Cursos ||--|{ Disciplinas : "contém"
+    Cursos ||--|{ MatrizCurricular : "define"
+    Disciplinas ||--|{ MatrizCurricular : "parte de"
+    Disciplinas ||--o{ Matriculas : "registrada em"
+    Disciplinas ||--o{ DisciplinasMinistradas : "ensinada em"
+
     Alunos {
-        ID_aluno ID
-        nome VARCHAR
-        matricula VARCHAR
-    }
-    Professores {
-        ID_professor ID
-        nome VARCHAR
-    }
-    Cursos {
-        ID_curso ID
-        nome VARCHAR
-        codigo VARCHAR
-    }
-    Departamentos {
-        ID_departamento ID
-        nome VARCHAR
-        ID_chefe INT
-        ID_curso INT
-    }
-    Disciplinas {
-        ID_disciplina ID
-        nome VARCHAR
-        codigo VARCHAR
-    }
-    Matrizes_Curriculares {
-        ID_matriz ID
-        ID_curso ID
-        ID_disciplina ID
-        semestre INT
-        ano INT
-    }
-    Historico_Escolar {
-        ID_aluno ID
-        ID_disciplina ID
-        semestre INT
-        ano INT
-        nota_final FLOAT
-    }
-    Disciplinas_Ministradas {
-        ID_professor ID
-        ID_disciplina ID
-        semestre INT
-        ano INT
-    }
-    TCC {
-        ID_grupo ID
-        ID_aluno ID
-        ID_professor_orientador ID
+        int AlunoID PK
+        string Nome
+        date DataNascimento
+        string Email
     }
 
-    Alunos ||--o{ Historico_Escolar : "Cursa"
-    Historico_Escolar ||--|| Disciplinas : "Inclui"
-    Professores ||--o{ Disciplinas_Ministradas : "Ministra"
-    Professores ||--o{ TCC : "Orienta"
-    Departamentos ||--o{ Professores : "Chefiado por"
-    Departamentos ||--o{ Cursos : "Oferece"
-    Cursos ||--|| Matrizes_Curriculares : "Possui"
-    Matrizes_Curriculares ||--|| Disciplinas : "Contem"
+    Professores {
+        int ProfessorID PK
+        string Nome
+        string Email
+        bool ChefeDepartamento
+    }
+
+    Departamentos {
+        int DepartamentoID PK
+        string Nome
+        int ChefeID FK
+    }
+
+    Cursos {
+        int CursoID PK
+        string Nome
+        int DepartamentoID FK
+    }
+
+    Disciplinas {
+        int DisciplinaID PK
+        string Nome
+        int CursoID FK
+    }
+
+    MatrizCurricular {
+        int MatrizID PK
+        int CursoID FK
+        int DisciplinaID FK
+        int SemestreRecomendado
+        int CargaHoraria
+    }
+
+    Matriculas {
+        int MatriculaID PK
+        int AlunoID FK
+        int DisciplinaID FK
+        int Ano
+        string Semestre
+        float NotaFinal
+    }
+
+    DisciplinasMinistradas {
+        int DisciplinaMinistradaID PK
+        int ProfessorID FK
+        int DisciplinaID FK
+        int Ano
+        string Semestre
+    }
+
+    TCCs {
+        int TCCID PK
+        string Titulo
+        int AlunoID FK
+        int ProfessorID FK
+        int Ano
+        string Semestre
+    }
+
+
 
 ```
 
