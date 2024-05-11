@@ -1,13 +1,14 @@
-
-
+import client from "./db.js";
+import tableCreationController from "./Controllers/TableCreationController.js";
+import tableDeletionController from "./Controllers/TableDeleteController.js";
 class main {
     
     limparBanco() {
-        //Apagar todas as tabelas
+        return tableDeletionController.dropTesteTable()
     }
 
     adicionarTabelas() {
-        //Adicionar as tabelas necessárias
+        return tableCreationController.createProfessorTable()
     }
 
     popularTabelas() {
@@ -34,4 +35,8 @@ class main {
         //Saber quais alunos formaram um grupo de TCC e qual professor foi o orientador
     }
 }
+
+const MAIN = new main
+
+MAIN.limparBanco()
 
