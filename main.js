@@ -1,12 +1,11 @@
-import client from "./db.js";
+import tableDeleteController from "./Controllers/TableDeleteController.js";
+import tableInsertController from "./Controllers/TableInsertController.js";
 import tableCreationController from "./Controllers/TableCreationController.js";
-import tableDeletionController from "./Controllers/TableDeleteController.js";
-
 
 class main {
     
     limparBanco() {
-        return tableDeletionController.dropTesteTable()
+        tableDeleteController.dropAllTables()
     }
 
     adicionarTabelas() {
@@ -14,7 +13,7 @@ class main {
     }
 
     popularTabelas() {
-        //Preencher as tabelas com dados aleatórios
+        tableInsertController.insertDataToAllTables()
     }
 
     buscarHistoricoEscolar() {
@@ -40,5 +39,5 @@ class main {
 
 const MAIN = new main
 
-MAIN.limparBanco()
+MAIN.adicionarTabelas()
 
