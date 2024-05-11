@@ -1,4 +1,4 @@
-import client from 'db.js'
+import client from './../db.js'
 
 class TableCreationController {
     constructor() {}
