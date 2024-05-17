@@ -12,8 +12,8 @@ class main {
         tableCreationController.createAllTables()
     }
 
-    popularTabelas() {
-        tableInsertController.insertDataToAllTables()
+    popularTabelas(itensCount) {
+        tableInsertController.insertDataToAlunoTable(itensCount);
     }
 
     buscarHistoricoEscolar() {
@@ -38,6 +38,5 @@ class main {
 }
 
 const MAIN = new main
-
-MAIN.adicionarTabelas()
+MAIN.popularTabelas(5)
 

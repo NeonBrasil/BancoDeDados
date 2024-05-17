@@ -2,15 +2,15 @@ class DataGenerator {
     constructor() {}
 
     getRandomName() {
-
+        return "nomeDeTeste"
     }
 
     getRandomDate() {
-
+        return "CURRENT_TIMESTAMP"
     }
 
     getRandomEmail() {
-        
+        return "emailDeTeste@gmail.com"
     }
 }
 

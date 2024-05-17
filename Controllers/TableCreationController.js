@@ -18,14 +18,14 @@ class TableCreationController {
 
     createAlunoTable() {
         /*
-        CREATE TABLE Alunos (
+        CREATE TABLE IF NOT EXISTS Alunos (
             Aluno_ID SERIAL PRIMARY KEY,
             Nome VARCHAR(100),
-            Data_Nascimento DATE,
+            Data_Nascimento TIMESTAMP,
             Email VARCHAR(100)
         );
         */
-        const sql = "CREATE TABLE Alunos (Aluno_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Data_Nascimento DATE,Email VARCHAR(100));"
+        const sql = "CREATE TABLE IF NOT EXISTS Alunos (Aluno_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Data_Nascimento TIMESTAMP,Email VARCHAR(100));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -37,7 +37,7 @@ class TableCreationController {
 
     createProfessorTable() {
         /*
-        CREATE TABLE Professores (
+        CREATE TABLE IF NOT EXISTS Professores (
             Professor_ID SERIAL PRIMARY KEY,
             Nome VARCHAR(100),
             Email VARCHAR(100),
@@ -45,7 +45,7 @@ class TableCreationController {
         );
         */
 
-        const sql = "CREATE TABLE Professores (Professor_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Email VARCHAR(100),Chefe_Departamento BOOLEAN);"
+        const sql = "CREATE TABLE IF NOT EXISTS Professores (Professor_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Email VARCHAR(100),Chefe_Departamento BOOLEAN);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -57,7 +57,7 @@ class TableCreationController {
 
     createDepartamentoTable() {
         /*
-        CREATE TABLE Departamentos (
+        CREATE TABLE IF NOT EXISTS Departamentos (
             Departamento_ID SERIAL PRIMARY KEY,
             Nome VARCHAR(100),
             Chefe_ID INT,
@@ -65,7 +65,7 @@ class TableCreationController {
         );
         */
 
-        const sql = "CREATE TABLE Departamentos (Departamento_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Chefe_ID INT,FOREIGN KEY (Chefe_ID) REFERENCES Professores(Professor_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Departamentos (Departamento_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Chefe_ID INT,FOREIGN KEY (Chefe_ID) REFERENCES Professores(Professor_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -77,7 +77,7 @@ class TableCreationController {
 
     createCursoTable() {
         /*
-        CREATE TABLE Cursos (
+        CREATE TABLE IF NOT EXISTS Cursos (
             Curso_ID SERIAL PRIMARY KEY,
             Nome VARCHAR(100),
             Departamento_ID INT,
@@ -85,7 +85,7 @@ class TableCreationController {
         );
         */
 
-        const sql = "CREATE TABLE Cursos (Curso_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Departamento_ID INT,FOREIGN KEY (Departamento_ID) REFERENCES Departamentos(Departamento_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Cursos (Curso_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Departamento_ID INT,FOREIGN KEY (Departamento_ID) REFERENCES Departamentos(Departamento_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -97,7 +97,7 @@ class TableCreationController {
 
     createDisciplinaTable() {
         /*
-        CREATE TABLE Disciplinas (
+        CREATE TABLE IF NOT EXISTS Disciplinas (
             Disciplina_ID SERIAL PRIMARY KEY,
             Nome VARCHAR(100),
             Curso_ID INT,
@@ -105,7 +105,7 @@ class TableCreationController {
         );
         */
         
-        const sql = "CREATE TABLE Disciplinas (Disciplina_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Curso_ID INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Disciplinas (Disciplina_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Curso_ID INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -117,7 +117,7 @@ class TableCreationController {
 
     createMatrizCurricularTable() {
         /*
-        CREATE TABLE MatrizCurricular (
+        CREATE TABLE IF NOT EXISTS MatrizCurricular (
             Matriz_ID SERIAL PRIMARY KEY,
             Curso_ID INT,
             Disciplina_ID INT,
@@ -128,7 +128,7 @@ class TableCreationController {
         );
         */
         
-        const sql = "CREATE TABLE MatrizCurricular (Matriz_ID SERIAL PRIMARY KEY,Curso_ID INT,Disciplina_ID INT,Semestre_Recomendado INT,Carga_Horaria INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS MatrizCurricular (Matriz_ID SERIAL PRIMARY KEY,Curso_ID INT,Disciplina_ID INT,Semestre_Recomendado INT,Carga_Horaria INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -140,7 +140,7 @@ class TableCreationController {
 
     createMatriculaTable() {
         /*
-        CREATE TABLE Matriculas (
+        CREATE TABLE IF NOT EXISTS Matriculas (
             Matricula_ID SERIAL PRIMARY KEY,
             Aluno_ID INT,
             Disciplina_ID INT,
@@ -152,7 +152,7 @@ class TableCreationController {
         );
         */
 
-        const sql = "CREATE TABLE Matriculas (Matricula_ID SERIAL PRIMARY KEY,Aluno_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),Nota_Final FLOAT,FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Matriculas (Matricula_ID SERIAL PRIMARY KEY,Aluno_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),Nota_Final FLOAT,FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -164,7 +164,7 @@ class TableCreationController {
 
     createDisciplinaMinistradaTable() {
         /*
-        CREATE TABLE DisciplinasMinistradas (
+        CREATE TABLE IF NOT EXISTS DisciplinasMinistradas (
             Disciplina_Ministrada_ID SERIAL PRIMARY KEY,
             Professor_ID INT,
             Disciplina_ID INT,
@@ -175,7 +175,7 @@ class TableCreationController {
         );
         */
 
-        const sql = "CREATE TABLE DisciplinasMinistradas (Disciplina_Ministrada_ID SERIAL PRIMARY KEY,Professor_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS DisciplinasMinistradas (Disciplina_Ministrada_ID SERIAL PRIMARY KEY,Professor_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -187,7 +187,7 @@ class TableCreationController {
 
     createTCCTable() {
         /*
-        CREATE TABLE TCCs (
+        CREATE TABLE IF NOT EXISTS TCCs (
             TCC_ID SERIAL PRIMARY KEY,
             Titulo VARCHAR(255),
             Aluno_ID INT,
@@ -199,7 +199,7 @@ class TableCreationController {
         );
         */
         
-        const sql = "CREATE TABLE TCCs (TCC_ID SERIAL PRIMARY KEY,Titulo VARCHAR(255),Aluno_ID INT,Professor_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS TCCs (TCC_ID SERIAL PRIMARY KEY,Titulo VARCHAR(255),Aluno_ID INT,Professor_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
