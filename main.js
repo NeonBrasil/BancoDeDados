@@ -13,7 +13,7 @@ class main {
     }
 
     popularTabelas(itensCount) {
-        tableInsertController.insertDataToProfessorTable(itensCount);
+        tableInsertController.insertDataToAlunoTable(itensCount);
     }
 
     buscarHistoricoEscolar() {
@@ -38,5 +38,5 @@ class main {
 }
 
 const MAIN = new main
-MAIN.adicionarTabelas()
+MAIN.popularTabelas(1)
 

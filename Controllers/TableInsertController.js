@@ -17,29 +17,56 @@ class TableInsertController {
         return;
     }
 
+    // insertDataToAlunoTable(itensCount) {
+    //     let alunoID = 0
+    //     let nome = ""
+    //     let date = ""
+    //     let email = ""
+
+    //     var values = []
+    //     for (let i = 0; i < itensCount; i++) {
+    //         alunoID = i+1
+    //         nome = generator.getRandomName()
+    //         date = generator.getRandomDate()
+    //         email = generator.getRandomEmail()
+
+    //         if (i == itensCount-1) {   
+    //             let valueToAdd = "(" + alunoID + ", '" + nome + "', " + date + ", '" + email + "');"
+    //             values.push(valueToAdd)
+    //         } else {
+    //             let valueToAdd = "(" + alunoID + ", '" + nome + "', " + date + ", '" + email + "')"
+    //             values.push(valueToAdd)
+    //         }
+    //     }
+
+    //     var query = "INSERT INTO alunos (aluno_id, nome, data_nascimento, email) VALUES " + values.toString()
+    //     console.log(query)
+    //     client.query(query, (err, result) => {
+    //         if (err) throw err;
+    //         console.log("Dados inseridos na tabela alunos")
+    //     })
+    // }
+
     insertDataToAlunoTable(itensCount) {
         let alunoID = 0
-        let nome = ""
-        let date = ""
-        let email = ""
+        let nome = generator.getRandomName()
 
         var values = []
         for (let i = 0; i < itensCount; i++) {
-            alunoID = i+1
-            nome = generator.getRandomName()
-            date = generator.getRandomDate()
-            email = generator.getRandomEmail()
-
-            if (i == itensCount-1) {   
-                let valueToAdd = "(" + alunoID + ", '" + nome + "', " + date + ", '" + email + "');"
-                values.push(valueToAdd)
-            } else {
-                let valueToAdd = "(" + alunoID + ", '" + nome + "', " + date + ", '" + email + "')"
-                values.push(valueToAdd)
-            }
+        alunoID = i+1
+        nome = generator.getRandomName()
+        //date = generator.getRandomDate()
+        //email = generator.getRandomEmail()
+        if (i == itensCount-1) {   
+            let valueToAdd = "('" + nome + "', " + alunoID + ");"
+            values.push(valueToAdd)
+        } else {
+            let valueToAdd = "('" + nome + "', " + alunoID + ")"
+            values.push(valueToAdd)
         }
+    }
 
-        var query = "INSERT INTO alunos (aluno_id, nome, data_nascimento, email) VALUES " + values.toString()
+        var query = "INSERT INTO willdropsoon (nome, idade) VALUES " + values.toString();
         console.log(query)
         client.query(query, (err, result) => {
             if (err) throw err;
