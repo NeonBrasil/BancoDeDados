@@ -13,19 +13,19 @@ class TableCreationController {
         this.createMatriculaTable()
         this.createDisciplinaMinistradaTable()
         this.createTCCTable()
+        this.setFKsKeys()
         return;
     }
 
     createAlunoTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Alunos (
-            Aluno_ID SERIAL PRIMARY KEY,
-            Nome VARCHAR(100),
-            Data_Nascimento TIMESTAMP,
-            Email VARCHAR(100)
+        CREATE TABLE IF NOT EXISTS Aluno (
+            aluno_id INT PRIMARY KEY,
+            nome VARCHAR(100),
+            email VARCHAR(100)
         );
         */
-        const sql = "CREATE TABLE IF NOT EXISTS Alunos (Aluno_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Data_Nascimento TIMESTAMP,Email VARCHAR(100));"
+        const sql = "CREATE TABLE IF NOT EXISTS Aluno (aluno_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -37,15 +37,15 @@ class TableCreationController {
 
     createProfessorTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Professores (
-            Professor_ID SERIAL PRIMARY KEY,
-            Nome VARCHAR(100),
-            Email VARCHAR(100),
-            Chefe_Departamento BOOLEAN
+        CREATE TABLE IF NOT EXISTS Professor (
+            professor_id INT PRIMARY KEY,
+            nome VARCHAR(100),
+            email VARCHAR(100),
+            chefe_departamento BOOLEAN
         );
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS Professores (Professor_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Email VARCHAR(100),Chefe_Departamento BOOLEAN);"
+        const sql = "CREATE TABLE IF NOT EXISTS Professor (professor_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100),chefe_departamento BOOLEAN);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -57,15 +57,14 @@ class TableCreationController {
 
     createDepartamentoTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Departamentos (
-            Departamento_ID SERIAL PRIMARY KEY,
-            Nome VARCHAR(100),
-            Chefe_ID INT,
-            FOREIGN KEY (Chefe_ID) REFERENCES Professores(Professor_ID)
+        CREATE TABLE IF NOT EXISTS Departamento (
+            departamento_id INT PRIMARY KEY,
+            nome VARCHAR(100),
+            chefe_ID INT
         );
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS Departamentos (Departamento_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Chefe_ID INT,FOREIGN KEY (Chefe_ID) REFERENCES Professores(Professor_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Departamento (departamento_id INT PRIMARY KEY,nome VARCHAR(100),chefe_ID INT);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -77,15 +76,14 @@ class TableCreationController {
 
     createCursoTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Cursos (
-            Curso_ID SERIAL PRIMARY KEY,
-            Nome VARCHAR(100),
-            Departamento_ID INT,
-            FOREIGN KEY (Departamento_ID) REFERENCES Departamentos(Departamento_ID)
+        CREATE TABLE IF NOT EXISTS Curso (
+            curso_id INT PRIMARY KEY,
+            nome VARCHAR(100),
+            departamento_id INT
         );
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS Cursos (Curso_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Departamento_ID INT,FOREIGN KEY (Departamento_ID) REFERENCES Departamentos(Departamento_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Curso (curso_id INT PRIMARY KEY,nome VARCHAR(100),departamento_id INT);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -97,15 +95,14 @@ class TableCreationController {
 
     createDisciplinaTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Disciplinas (
-            Disciplina_ID SERIAL PRIMARY KEY,
-            Nome VARCHAR(100),
-            Curso_ID INT,
-            FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID)
+        CREATE TABLE IF NOT EXISTS Disciplina (
+            disciplina_id INT PRIMARY KEY,
+            nome VARCHAR(100),
+            curso_ID INT
         );
         */
         
-        const sql = "CREATE TABLE IF NOT EXISTS Disciplinas (Disciplina_ID SERIAL PRIMARY KEY,Nome VARCHAR(100),Curso_ID INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Disciplina (disciplina_id INT PRIMARY KEY,nome VARCHAR(100),curso_ID INT);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -118,17 +115,15 @@ class TableCreationController {
     createMatrizCurricularTable() {
         /*
         CREATE TABLE IF NOT EXISTS MatrizCurricular (
-            Matriz_ID SERIAL PRIMARY KEY,
-            Curso_ID INT,
-            Disciplina_ID INT,
-            Semestre_Recomendado INT,
-            Carga_Horaria INT,
-            FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID),
-            FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID)
+            matriz_id INT PRIMARY KEY,
+            curso_id INT,
+            disciplina_id INT,
+            semestre_recomendado INT,
+            carga_horaria INT
         );
         */
         
-        const sql = "CREATE TABLE IF NOT EXISTS MatrizCurricular (Matriz_ID SERIAL PRIMARY KEY,Curso_ID INT,Disciplina_ID INT,Semestre_Recomendado INT,Carga_Horaria INT,FOREIGN KEY (Curso_ID) REFERENCES Cursos(Curso_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS MatrizCurricular (matriz_id INT PRIMARY KEY,curso_id INT,disciplina_id INT,semestre_recomendado INT,carga_horaria INT);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -140,19 +135,17 @@ class TableCreationController {
 
     createMatriculaTable() {
         /*
-        CREATE TABLE IF NOT EXISTS Matriculas (
-            Matricula_ID SERIAL PRIMARY KEY,
-            Aluno_ID INT,
-            Disciplina_ID INT,
-            Ano INT,
-            Semestre VARCHAR(10),
-            Nota_Final FLOAT,
-            FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),
-            FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID)
-        );
+        CREATE TABLE IF NOT EXISTS Matricula (
+            matricula_id INT PRIMARY KEY,
+            aluno_id INT,
+            disciplina_id INT,
+            ano INT,
+            semestre VARCHAR(10),
+            nota_final FLOAT
+        ); 
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS Matriculas (Matricula_ID SERIAL PRIMARY KEY,Aluno_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),Nota_Final FLOAT,FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS Matricula (matricula_id INT PRIMARY KEY,aluno_id INT,disciplina_id INT,ano INT,semestre VARCHAR(10),nota_final FLOAT);"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -164,18 +157,16 @@ class TableCreationController {
 
     createDisciplinaMinistradaTable() {
         /*
-        CREATE TABLE IF NOT EXISTS DisciplinasMinistradas (
-            Disciplina_Ministrada_ID SERIAL PRIMARY KEY,
-            Professor_ID INT,
-            Disciplina_ID INT,
-            Ano INT,
-            Semestre VARCHAR(10),
-            FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID),
-            FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID)
+        CREATE TABLE IF NOT EXISTS DisciplinaMinistrada (
+            disciplina_ministrada_id INT PRIMARY KEY,
+            professor_id INT,
+            disciplina_id INT,
+            ano INT,
+            semestre VARCHAR(10)
         );
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS DisciplinasMinistradas (Disciplina_Ministrada_ID SERIAL PRIMARY KEY,Professor_ID INT,Disciplina_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID),FOREIGN KEY (Disciplina_ID) REFERENCES Disciplinas(Disciplina_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS DisciplinaMinistrada (disciplina_ministrada_id INT PRIMARY KEY,professor_id INT,disciplina_id INT,ano INT,semestre VARCHAR(10));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
@@ -187,24 +178,62 @@ class TableCreationController {
 
     createTCCTable() {
         /*
-        CREATE TABLE IF NOT EXISTS TCCs (
-            TCC_ID SERIAL PRIMARY KEY,
-            Titulo VARCHAR(255),
-            Aluno_ID INT,
-            Professor_ID INT,
-            Ano INT,
-            Semestre VARCHAR(10),
-            FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),
-            FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID)
+        CREATE TABLE IF NOT EXISTS TCC (
+            TCC_id INT PRIMARY KEY,
+            titulo VARCHAR(255),
+            aluno_id INT,
+            professor_id INT,
+            ano INT,
+            semestre VARCHAR(10)
         );
         */
         
-        const sql = "CREATE TABLE IF NOT EXISTS TCCs (TCC_ID SERIAL PRIMARY KEY,Titulo VARCHAR(255),Aluno_ID INT,Professor_ID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (Aluno_ID) REFERENCES Alunos(Aluno_ID),FOREIGN KEY (Professor_ID) REFERENCES Professores(Professor_ID));"
+        const sql = "CREATE TABLE IF NOT EXISTS TCC (TCC_id INT PRIMARY KEY,titulo VARCHAR(255),aluno_id INT,professor_id INT,ano INT,semestre VARCHAR(10));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")
             }else{
                 console.log("Criou tabela TCCs")
+            }
+        })
+    }
+
+    setFKsKeys() {
+        /*
+        alter table departamento ADD CONSTRAINT fk_dpto_profs FOREIGN KEY (chefe_id) REFERENCES professor(professor_id);
+        alter table curso ADD CONSTRAINT fk_curso_dpto FOREIGN KEY (departamento_id) REFERENCES departamento(departamento_id);
+        alter table disciplina ADD CONSTRAINT fk_disc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id);
+
+        alter table matrizcurricular ADD CONSTRAINT fk_matrizc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id);
+        alter table matrizcurricular ADD CONSTRAINT fk_matrizc_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
+
+        alter table matricula ADD CONSTRAINT fk_matricula_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);
+        alter table matricula ADD CONSTRAINT fk_matricula_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
+
+        alter table disciplinaministrada ADD CONSTRAINT fk_discmin_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
+        alter table disciplinaministrada ADD CONSTRAINT fk_discmin_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
+
+        alter table tcc ADD CONSTRAINT fk_tcc_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);
+        alter table tcc ADD CONSTRAINT fk_tcc_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
+        */
+
+        var sql = "alter table departamento ADD CONSTRAINT fk_dpto_profs FOREIGN KEY (chefe_id) REFERENCES professor(professor_id); \n"
+        sql = sql + "alter table curso ADD CONSTRAINT fk_curso_dpto FOREIGN KEY (departamento_id) REFERENCES departamento(departamento_id); \n"
+        sql = sql + "alter table disciplina ADD CONSTRAINT fk_disc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id); \n"
+        sql = sql + "alter table matrizcurricular ADD CONSTRAINT fk_matrizc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id); \n"
+        sql = sql + "alter table matrizcurricular ADD CONSTRAINT fk_matrizc_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id); \n"
+        sql = sql + "alter table matricula ADD CONSTRAINT fk_matricula_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id); \n"
+        sql = sql + "alter table matricula ADD CONSTRAINT fk_matricula_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id); \n"
+        sql = sql + "alter table disciplinaministrada ADD CONSTRAINT fk_discmin_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id); \n"
+        sql = sql + "alter table disciplinaministrada ADD CONSTRAINT fk_discmin_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id); \n"
+        sql = sql + "alter table tcc ADD CONSTRAINT fk_tcc_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id); \n"
+        sql = sql + "alter table tcc ADD CONSTRAINT fk_tcc_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);"
+
+        client .query(sql, (err, result) => {
+            if (err) {
+                console.log("deu erro")
+            }else{
+                console.log("Atualizou as tabelas com os FKs")
             }
         })
     }
