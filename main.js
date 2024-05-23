@@ -38,5 +38,18 @@ class main {
 }
 
 const MAIN = new main
+
+//Remova as funções desejadas dos comentários para utiliza-las
+
+//Função usada para remover todas as tabelas do banco de dados
+// MAIN.limparBanco()
+
+//Função para criar todas as tabelas 
 MAIN.adicionarTabelas()
+
+//Função para popular todas as tabelas
+//Use um int no parametro da função pra dizer quantas rows serão criadas
+// MAIN.popularTabelas(20)
+
+
 
