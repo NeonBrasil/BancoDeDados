@@ -88,6 +88,67 @@ class DataGenerator {
 
         return emailData[randomIndex];
     }
+
+    getDepartamentos() {
+        const departamento = [
+            'Administração',
+            'Ciências Contábeis',
+            'Economia',
+            'Engenharia',
+            'Tecnologia da Informação',
+            'Recursos Humanos',
+            'Marketing',
+            'Finanças',
+            'Pesquisa e Desenvolvimento',
+            'Educação e Treinamento'
+        ]
+
+        return departamento;
+    }
+
+    getCursos() {
+        const cursos = [
+            'Gestão Empresarial',
+            'Contabilidade e Finanças',
+            'Análise Econômica',
+            'Engenharia Civil',
+            'Ciência da Computação',
+            'Gestão de Pessoas',
+            'Marketing Digital',
+            'Finanças Corporativas',
+            'Inovação Tecnológica',
+            'Formação de Professores'
+        ]
+
+        return cursos;
+    }
+
+    getDisciplinas() {
+        const disciplinas = [
+            'Gestão Estratégica',
+            'Empreendedorismo',
+            'Contabilidade Gerencial',
+            'Análise de Balanços',
+            'Microeconomia',
+            'Macroeconomia',
+            'Estruturas de Concreto',
+            'Mecânica dos Solos',
+            'Programação Orientada a Objetos',
+            'Algoritmos e Estruturas de Dados',
+            'Desenvolvimento Organizacional',
+            'Psicologia do Trabalho',
+            'Gestão de Mídias Sociais',
+            'Marketing de Conteúdo',
+            'Gestão de Investimentos',
+            'Planejamento Financeiro',
+            'Gestão de Projetos de Inovação',
+            'Tecnologias Emergentes',
+            'Didática e Metodologia do Ensino',
+            'Psicopedagogia'
+        ]
+
+        return disciplinas;
+    }
 }
 
 const generator = new DataGenerator();
