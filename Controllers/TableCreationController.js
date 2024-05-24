@@ -40,12 +40,11 @@ class TableCreationController {
         CREATE TABLE IF NOT EXISTS Professor (
             professor_id INT PRIMARY KEY,
             nome VARCHAR(100),
-            email VARCHAR(100),
-            chefe_departamento BOOLEAN
+            email VARCHAR(100)
         );
         */
 
-        const sql = "CREATE TABLE IF NOT EXISTS Professor (professor_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100),chefe_departamento BOOLEAN);"
+        const sql = "CREATE TABLE IF NOT EXISTS Professor (professor_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100));"
         client .query(sql, (err, result) => {
             if (err) {
                 console.log("deu erro")

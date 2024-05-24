@@ -44,7 +44,7 @@ class TableInsertController {
             var professorID = i+1
             var nome = generator.getRandomName()
             var email = generator.getRandomEmail()
-            query = query + "INSERT INTO alunos (professor_id, nome, email, chefe_departamento) VALUES (" + professorID + ", '" + nome + "', '" + email + "', null); \n"
+            query = query + "INSERT INTO professor (professor_id, nome, email) VALUES (" + professorID + ", '" + nome + "', '" + email + "'); \n"
         }
         
         console.log(query)
@@ -60,7 +60,7 @@ class TableInsertController {
         for (let i = 0; i < itensCount; i++) {
             var departamentoID = i+1
             var nome = generator.getRandomName()
-            query = query + "INSERT INTO alunos (departamento_id, nome, chefe_ID) VALUES (); \n"
+            query = query + "INSERT INTO departamento (departamento_id, nome, chefe_ID) VALUES (); \n"
         }
 
         client.query(query, (err, result) => {
@@ -75,7 +75,7 @@ class TableInsertController {
         for (let i = 0; i < itensCount; i++) {
             var cursoID = i+1
             var nome = generator.getRandomName()
-            query = query + "INSERT INTO alunos (curso_id, nome, departamento_id) VALUES (); \n"
+            query = query + "INSERT INTO curso (curso_id, nome, departamento_id) VALUES (); \n"
         }
 
         console.log(query);
@@ -91,7 +91,7 @@ class TableInsertController {
         for (let i = 0; i < itensCount; i++) {
             var departamentoID = i+1
             var nome = generator.getRandomName()
-            query = query + "INSERT INTO alunos (disciplina_id, nome, curso_ID) VALUES (); \n"
+            query = query + "INSERT INTO disciplina (disciplina_id, nome, curso_ID) VALUES (); \n"
         }
 
         console.log(query);
@@ -108,7 +108,7 @@ class TableInsertController {
             var departamentoID = i+1
             var semestreRecomendado = generator.getRandomName()
             var cargaHoraria = generator.getRandomName()
-            query = query + "INSERT INTO alunos (matriz_id, curso_id, disciplina_id, semestre_recomendado, carga_horaria) VALUES (); \n"
+            query = query + "INSERT INTO matrizcurricular (matriz_id, curso_id, disciplina_id, semestre_recomendado, carga_horaria) VALUES (); \n"
         }
         
         client.query(query, (err, result) => {
@@ -125,7 +125,7 @@ class TableInsertController {
             var ano = generator.getRandomName()
             var semestre = generator.getRandomName()
             var notaFinal = generator.getRandomName()
-            query = query + "INSERT INTO alunos (matricula_id, aluno_id, disciplina_id, ano, semestre, nota_final) VALUES (); \n"
+            query = query + "INSERT INTO matricula (matricula_id, aluno_id, disciplina_id, ano, semestre, nota_final) VALUES (); \n"
         }
 
         client.query(query, (err, result) => {
@@ -141,7 +141,7 @@ class TableInsertController {
             var departamentoID = i+1
             var ano = generator.getRandomName()
             var semestre = generator.getRandomName()
-            query = query + "INSERT INTO alunos (disciplina_ministrada_id, professor_id, disciplina_id, ano, semestre) VALUES (); \n"
+            query = query + "INSERT INTO disciplinaministrada (disciplina_ministrada_id, professor_id, disciplina_id, ano, semestre) VALUES (); \n"
         }
 
         client.query(query, (err, result) => {
@@ -158,7 +158,7 @@ class TableInsertController {
             var titulo = generator.getRandomName()
             var ano = generator.getRandomName()
             var semestre = generator.getRandomName()
-            query = query + "INSERT INTO alunos (TCC_id, titulo, aluno_id, professor_id, ano, semestre) VALUES (); \n"
+            query = query + "INSERT INTO tcc (TCC_id, titulo, aluno_id, professor_id, ano, semestre) VALUES (); \n"
         }
 
         client.query(query, (err, result) => {

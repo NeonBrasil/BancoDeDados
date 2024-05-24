@@ -13,7 +13,7 @@ class main {
     }
 
     popularTabelas() {
-        tableInsertController.insertDataToAlunoTable();
+        tableInsertController.insertDataToProfessorTable();
     }
 
     buscarHistoricoEscolar() {
