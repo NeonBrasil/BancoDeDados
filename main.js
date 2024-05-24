@@ -12,8 +12,8 @@ class main {
         tableCreationController.createAllTables()
     }
 
-    popularTabelas(itensCount) {
-        tableInsertController.insertDataToAlunoTable(itensCount);
+    popularTabelas() {
+        tableInsertController.insertDataToAlunoTable();
     }
 
     buscarHistoricoEscolar() {
@@ -44,11 +44,10 @@ const MAIN = new main
 // MAIN.limparBanco()
 
 //Função para criar todas as tabelas 
-MAIN.adicionarTabelas()
+// MAIN.adicionarTabelas()
 
 //Função para popular todas as tabelas
-//Use um int no parametro da função pra dizer quantas rows serão criadas
-// MAIN.popularTabelas(20)
+MAIN.popularTabelas()
 
 
 

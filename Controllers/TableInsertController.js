@@ -4,228 +4,171 @@ import generator from "../Model/DataGenerator.js";
 class TableInsertController {
     constructor() {}
 
-    insertDataToAllTables(itensCount) {
-        this.insertDataToAlunoTable(itensCount)
-        this.insertDataToProfessorTable(itensCount)
-        this.insertDataToDepartamentoTable(itensCount)
-        this.insertDataToCursoTable(itensCount)
-        this.insertDataToDisciplinaTable(itensCount)
-        this.insertDataToMatrizCurricularTable(itensCount)
-        this.insertDataToMatriculaTable(itensCount)
-        this.insertDataToDisciplinaMinistradaTable(itensCount)
-        this.insertDataToTCCTable(itensCount)
+    insertDataToAllTables() {
+        this.insertDataToAlunoTable()
+        this.insertDataToProfessorTable()
+        this.insertDataToDepartamentoTable()
+        this.insertDataToCursoTable()
+        this.insertDataToDisciplinaTable()
+        this.insertDataToMatrizCurricularTable()
+        this.insertDataToMatriculaTable()
+        this.insertDataToDisciplinaMinistradaTable()
+        this.insertDataToTCCTable()
+        this.insertUpdatesToTables()
         return;
     }
 
-    insertDataToAlunoTable(itensCount) {
-        let alunoID = 0
-        let nome = ""
-        let email = ""
 
-        var values = []
-        for (let i = 0; i < itensCount; i++) {
-        alunoID = i+1
-        nome = generator.getRandomName()
-        email = generator.getRandomEmail()
-        if (i == itensCount-1) {   
-            let valueToAdd = "( " + alunoID + " ,'" + nome + "', '" + email + "' );"
-            values.push(valueToAdd)
-        } else {
-            let valueToAdd = "( " + alunoID + " ,'" + nome + "', '" + email + "' )"
-            values.push(valueToAdd)
+    insertDataToAlunoTable() {
+        var query = ""
+
+        for (let i = 0; i < 20; i++) {
+            var alunoID = i+1
+            var nome = generator.getRandomName()
+            var email = generator.getRandomEmail()
+            query = query + "INSERT INTO aluno (aluno_id, nome, email) VALUES (" + alunoID + ", '" + nome + "', '" + email + "'); \n"
         }
-    }
 
-        var query = "INSERT INTO aluno (aluno_id, nome, email) VALUES " + values.toString();
-        console.log(query)
+
+        console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
+            console.log("Dados inseridos na tabela aluno")
         })
     }
 
-    insertDataToProfessorTable(itensCount) {
+    insertDataToProfessorTable() {
+        var query = ""
 
-        let professorID = 0
-        let nome = ""
-        let email = ""
-        let chefeDepartamento = Boolean
-
-        var values = []
-        for (let i = 0; i < itensCount; i++) {
-            professorID = i+1
-            nome = generator.getRandomName()
-            email = generator.getRandomEmail()
-            chefeDepartamento = false
-
-            if (i == itensCount-1) {   
-                let valueToAdd = "(" + professorID + ", '" + nome + "', '" + email + "', '" + chefeDepartamento + "');"
-                values.push(valueToAdd)
-            } else {
-                let valueToAdd = "(" + professorID + ", '" + nome + "', '" + email + "', '" + chefeDepartamento + "')"
-                values.push(valueToAdd)
-            }
+        for (let i = 0; i < 20; i++) {
+            var professorID = i+1
+            var nome = generator.getRandomName()
+            var email = generator.getRandomEmail()
+            query = query + "INSERT INTO alunos (professor_id, nome, email, chefe_departamento) VALUES (" + professorID + ", '" + nome + "', '" + email + "', null); \n"
         }
         
-        var query = "INSERT INTO professor (professor_id, nome, email, chefe_departamento) VALUES " + values.toString()
         console.log(query)
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela professores")
+            console.log("Dados inseridos na tabela professor")
         })
     }
 
     insertDataToDepartamentoTable(itensCount) {
-        /*
-        INSERT INTO Departamentos (Nome, Chefe_ID) VALUES ("Departamento de Geografia", 1);
-        */
+        var query = ""
 
-        let departamentoID = 0
-        let nome = ""
-        let chefeID = 0
-
-        var values = []
-        for (let i = 0; i < 11; i++) {
-            departamentoID = i+1
-            nome = generator.getDepartamentos()
-            chefeID = 0
-
-            if (i == itensCount-1) {   
-                let valueToAdd = "(" + departamentoID + ", '" + nome + "', " + chefeID + ");"
-                values.push(valueToAdd)
-            } else {
-                let valueToAdd = "(" + departamentoID + ", '" + nome + "', " + chefeID + ")"
-                values.push(valueToAdd)
-            }
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var nome = generator.getRandomName()
+            query = query + "INSERT INTO alunos (departamento_id, nome, chefe_ID) VALUES (); \n"
         }
 
-        var query = "INSERT INTO Departamento (departamento_id, nome, chefe_id) VALUES " + values.toString();
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela departamentos")
+            console.log("Dados inseridos na tabela departamento")
         })
     }
 
     insertDataToCursoTable(itensCount) {
-        /*
-        INSERT INTO Cursos (Nome, Departamento_ID) VALUES ("Geo-politica", 1);
-        */
+        var query = ""
 
-        let cursoId = 0
-        let nome = ""
-        let departamentoId = 0
-
-        var values = []
-        for (let i = 0; i < 11; i++) {
-            cursoId = i+1
-            nome = generator.getDepartamentos()
-            departamentoId = 0
-
-            if (i == itensCount-1) {   
-                let valueToAdd = "(" + cursoId + ", '" + nome + "', " + departamentoId + ");"
-                values.push(valueToAdd)
-            } else {
-                let valueToAdd = "(" + cursoId + ", '" + nome + "', " + departamentoId + ")"
-                values.push(valueToAdd)
-            }
+        for (let i = 0; i < itensCount; i++) {
+            var cursoID = i+1
+            var nome = generator.getRandomName()
+            query = query + "INSERT INTO alunos (curso_id, nome, departamento_id) VALUES (); \n"
         }
 
-        const sql = "INSERT INTO Curso (curso_id, nome, departamento_id) VALUES " + values.toString();
+        console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela Curso")
+            console.log("Dados inseridos na tabela curso")
         })
     }
 
     insertDataToDisciplinaTable(itensCount) {
-        /*
-        INSERT INTO Disciplinas (Nome, Curso_ID) VALUES ("Ecologia", 1);
-        */
-        
-        let disciplinaId = 0
-        let nome = ""
-        let cursoId = 0
+        var query = ""
 
-        var values = []
-        for (let i = 0; i < 21; i++) {
-            disciplinaId = i+1
-            nome = generator.getDisciplinas()
-            cursoId = 0
-
-            if (i == itensCount-1) {   
-                let valueToAdd = "(" + disciplinaId + ", '" + nome + "', " + cursoId + ");"
-                values.push(valueToAdd)
-            } else {
-                let valueToAdd = "(" + disciplinaId + ", '" + nome + "', " + cursoId + ")"
-                values.push(valueToAdd)
-            }
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var nome = generator.getRandomName()
+            query = query + "INSERT INTO alunos (disciplina_id, nome, curso_ID) VALUES (); \n"
         }
 
-        const sql = "INSERT INTO Disciplina (disciplina_id, nome, curso_id) VALUES " + values.toString();
+        console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela Curso")
+            console.log("Dados inseridos na tabela disciplina")
         })
     }
 
     insertDataToMatrizCurricularTable(itensCount) {
-        /*
-        INSERT INTO MatrizCurricular (Curso_ID, Disciplina_ID, Semestre_Recomendado, Carga_Horaria) VALUES (1, 1, 2, 60);
-        */
-        
-        const sql = "CREATE TABLE MatrizCurricular (MatrizID SERIAL PRIMARY KEY,CursoID INT,DisciplinaID INT,SemestreRecomendado INT,CargaHoraria INT,FOREIGN KEY (CursoID) REFERENCES Cursos(CursoID),FOREIGN KEY (DisciplinaID) REFERENCES Disciplinas(DisciplinaID));"
-        client.query(query, (err, result) => {
-            if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
-        })
-    }
+        var query = ""
 
-    insertDataToMatrizCurricularTable(itensCount) {
-        /*
-        INSERT INTO MatrizCurricular (Curso_ID, Disciplina_ID, Semestre_Recomendado, Carga_Horaria) VALUES (1, 1, 2, 60);
-        */
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var semestreRecomendado = generator.getRandomName()
+            var cargaHoraria = generator.getRandomName()
+            query = query + "INSERT INTO alunos (matriz_id, curso_id, disciplina_id, semestre_recomendado, carga_horaria) VALUES (); \n"
+        }
         
-        const sql = "CREATE TABLE MatrizCurricular (MatrizID SERIAL PRIMARY KEY,CursoID INT,DisciplinaID INT,SemestreRecomendado INT,CargaHoraria INT,FOREIGN KEY (CursoID) REFERENCES Cursos(CursoID),FOREIGN KEY (DisciplinaID) REFERENCES Disciplinas(DisciplinaID));"
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
+            console.log("Dados inseridos na tabela matriz curricular")
         })
     }
 
     insertDataToMatriculaTable(itensCount) {
-        /*
-        INSERT INTO Matriculas (Aluno_ID, Disciplina_ID, Ano, Semestre, Nota_Final) VALUES (1, 1, 2024, "1º Semestre", 8.5);
-        */
+        var query = ""
 
-        const sql = "CREATE TABLE Matriculas (MatriculaID SERIAL PRIMARY KEY,AlunoID INT,DisciplinaID INT,Ano INT,Semestre VARCHAR(10),NotaFinal FLOAT,FOREIGN KEY (AlunoID) REFERENCES Alunos(AlunoID),FOREIGN KEY (DisciplinaID) REFERENCES Disciplinas(DisciplinaID));"
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var ano = generator.getRandomName()
+            var semestre = generator.getRandomName()
+            var notaFinal = generator.getRandomName()
+            query = query + "INSERT INTO alunos (matricula_id, aluno_id, disciplina_id, ano, semestre, nota_final) VALUES (); \n"
+        }
+
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
+            console.log("Dados inseridos na tabela matricula")
         })
     }
 
     insertDataToDisciplinaMinistradaTable(itensCount) {
-        /*
-        INSERT INTO DisciplinasMinistradas (Professor_ID, Disciplina_ID, Ano, Semestre) VALUES (1, 1, 2024, "1º Semestre");
-        */
+        var query = ""
 
-        const sql = "CREATE TABLE DisciplinasMinistradas (DisciplinaMinistradaID SERIAL PRIMARY KEY,ProfessorID INT,DisciplinaID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (ProfessorID) REFERENCES Professores(ProfessorID),FOREIGN KEY (DisciplinaID) REFERENCES Disciplinas(DisciplinaID));"
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var ano = generator.getRandomName()
+            var semestre = generator.getRandomName()
+            query = query + "INSERT INTO alunos (disciplina_ministrada_id, professor_id, disciplina_id, ano, semestre) VALUES (); \n"
+        }
+
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
+            console.log("Dados inseridos na tabela disciplina ministrada")
         })
     }
 
     insertDataToTCCTable(itensCount) {
-        /*
-        INSERT INTO TCCs (Titulo, Aluno_ID, Professor_ID, Ano, Semestre) VALUES ("Estudo sobre Ecossistemas Aquáticos", 1, 2, 2024, "2º Semestre");
-        */
-        
-        const sql = "CREATE TABLE TCCs (TCCID SERIAL PRIMARY KEY,Titulo VARCHAR(255),AlunoID INT,ProfessorID INT,Ano INT,Semestre VARCHAR(10),FOREIGN KEY (AlunoID) REFERENCES Alunos(AlunoID),FOREIGN KEY (ProfessorID) REFERENCES Professores(ProfessorID));"
+        var query = ""
+
+        for (let i = 0; i < itensCount; i++) {
+            var departamentoID = i+1
+            var titulo = generator.getRandomName()
+            var ano = generator.getRandomName()
+            var semestre = generator.getRandomName()
+            query = query + "INSERT INTO alunos (TCC_id, titulo, aluno_id, professor_id, ano, semestre) VALUES (); \n"
+        }
+
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela alunos")
+            console.log("Dados inseridos na tabela tcc")
         })
+    }
+
+    insertUpdatesToTables() {
+
     }
 }
 
