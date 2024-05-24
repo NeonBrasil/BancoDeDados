@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS Aluno (
 CREATE TABLE IF NOT EXISTS Professor (
     professor_id INT PRIMARY KEY,
     nome VARCHAR(100),
-    email VARCHAR(100),
-    chefe_departamento BOOLEAN
+    email VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS Departamento (
@@ -26,7 +25,10 @@ CREATE TABLE IF NOT EXISTS Curso (
 CREATE TABLE IF NOT EXISTS Disciplina (
     disciplina_id INT PRIMARY KEY,
     nome VARCHAR(100),
-    curso_ID INT
+    curso_ID INT,
+    professor_id INT, 
+    semestre INT,
+    ano INT
 );
        
 CREATE TABLE IF NOT EXISTS MatrizCurricular (
@@ -66,6 +68,7 @@ CREATE TABLE IF NOT EXISTS TCC (
 alter table departamento ADD CONSTRAINT fk_dpto_profs FOREIGN KEY (chefe_id) REFERENCES professor(professor_id);
 alter table curso ADD CONSTRAINT fk_curso_dpto FOREIGN KEY (departamento_id) REFERENCES departamento(departamento_id);
 alter table disciplina ADD CONSTRAINT fk_disc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id);
+alter table disciplina ADD CONSTRAINT fk_disc_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
 alter table matrizcurricular ADD CONSTRAINT fk_matrizc_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id);
 alter table matrizcurricular ADD CONSTRAINT fk_matrizc_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
 alter table matricula ADD CONSTRAINT fk_matricula_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);

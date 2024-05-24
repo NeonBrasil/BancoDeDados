@@ -5,16 +5,15 @@ class TableInsertController {
     constructor() {}
 
     insertDataToAllTables() {
-        this.insertDataToAlunoTable()
-        this.insertDataToProfessorTable()
-        this.insertDataToDepartamentoTable()
-        this.insertDataToCursoTable()
-        this.insertDataToDisciplinaTable()
-        // this.insertDataToMatrizCurricularTable()
-        // this.insertDataToMatriculaTable()
-        // this.insertDataToDisciplinaMinistradaTable()
-        // this.insertDataToTCCTable()
-        // this.insertUpdatesToTables()
+        // this.insertDataToAlunoTable()
+        // this.insertDataToProfessorTable()
+        // this.insertDataToDepartamentoTable()
+        // this.insertDataToCursoTable()
+        // this.insertDataToDisciplinaTable()
+        this.insertDataToMatrizCurricularTable()
+        this.insertDataToMatriculaTable()
+        this.insertDataToDisciplinaMinistradaTable()
+        this.insertDataToTCCTable()
         return;
     }
 
@@ -100,7 +99,11 @@ class TableInsertController {
             var nome = disciplina[i];
             var disciplinaId = i + 1;
             var cursoId = Math.floor(Math.random() * (cursos.length - 1 + 1)) + 1;
-            query = query + "INSERT INTO disciplina (disciplina_id, nome, curso_id) VALUES (" + disciplinaId + ", '" + nome + "', " + cursoId + "); \n";
+            var professorID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            var ano = Math.floor(Math.random() * (2024 - 2000 + 1)) + 2000;
+            var semestre = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+
+            query = query + "INSERT INTO disciplina (disciplina_id, nome, curso_id, professor_id, semestre, ano) VALUES (" + disciplinaId + ", '" + nome + "', " + cursoId + ", " + professorID + ", " + semestre + ", " + ano + "); \n";
         }
 
         console.log(query);
@@ -114,12 +117,16 @@ class TableInsertController {
         var query = ""
 
         for (let i = 0; i < itensCount; i++) {
-            var departamentoID = i+1
-            var semestreRecomendado = generator.getRandomName()
+            var matrizID = i+1
+            var cursoID = generator.getRandomName()
+            var disciplinaID = generator.getRandomName()
+            var semestreRecomentado = generator.getRandomName()
             var cargaHoraria = generator.getRandomName()
+
             query = query + "INSERT INTO matrizcurricular (matriz_id, curso_id, disciplina_id, semestre_recomendado, carga_horaria) VALUES (); \n"
         }
         
+        console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela matriz curricular")
@@ -174,10 +181,6 @@ class TableInsertController {
             if (err) throw err;
             console.log("Dados inseridos na tabela tcc")
         })
-    }
-
-    insertUpdatesToTables() {
-
     }
 }
 
