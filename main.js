@@ -1,6 +1,7 @@
 import tableDeleteController from "./Controllers/TableDeleteController.js";
 import tableInsertController from "./Controllers/TableInsertController.js";
 import tableCreationController from "./Controllers/TableCreationController.js";
+import tableSearchController from "./Controllers/TableSearchController.js";
 
 class main {
     
@@ -13,7 +14,7 @@ class main {
     }
 
     popularTabelas() {
-        tableInsertController.insertDataToProfessorTable();
+        tableInsertController.insertDataToAllTables();
     }
 
     buscarHistoricoEscolar() {
@@ -48,6 +49,3 @@ const MAIN = new main
 
 //Função para popular todas as tabelas
 MAIN.popularTabelas()
-
-
-

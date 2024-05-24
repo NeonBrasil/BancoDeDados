@@ -3,7 +3,7 @@ import pg from 'pg'
 class DataBaseManager {
 
     constructor() {
-        this.client = new pg.Client("postgresql://arthur-sousa:EYtwLrm2sMUpGbPduP2iAg@projeto-banco-de-dados-14602.7tt.aws-us-east-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full");
+        this.client = new pg.Client("postgresql://arthur-sousa:M1jLazbVVnKXJSkmEOMoOw@projeto-banco-de-dados-14602.7tt.aws-us-east-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full");
         this.configSettings()
     }
 
