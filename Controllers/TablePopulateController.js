@@ -75,68 +75,68 @@ class TablePopulateController {
         })
     }
 
-    insertDataToDepartamentoTable(itensCount) {
+    insertDataToDepartamentoTable() {
         /*
         INSERT INTO Departamentos (Nome, Chefe_ID) VALUES ("Departamento de Geografia", 1);
         */
        const departamento = generator.getDepartamentos();
-
-        let departamentoID = 0
-        let nome = ""
-        let chefeID = 0
+       var query = ""
 
         for (let i = 0; i < departamento.length; i++) {
-            nome = departamento[i];
-            departamentoID = i + 1;
-            var sql = "INSERT INTO departamento (departamento_id, nome) VALUES ($1, $2)";
-            client.query(sql, [departamentoID, nome], (err, result) => {
-                if (err) throw err;
-                console.log("Dados inseridos na tabela departamentos")
-            })
+            var departamentoID = i+1
+            var chefeID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            var nome = departamento[i];
+            query = query + "INSERT INTO departamento (departamento_id, nome, chefe_id) VALUES (" + departamentoID + ", '" + nome + "', " + chefeID + "); \n";
         }
+
+        console.log(query);
+        client.query(query, (err, result) => {
+            if (err) throw err;
+            console.log("Dados inseridos na tabela departamentos")
+        })
     }
 
-    insertDataToCursoTable(itensCount) {
+    insertDataToCursoTable() {
         /*
         INSERT INTO Cursos (Nome, Departamento_ID) VALUES ("Geo-politica", 1);
         */
        const cursos = generator.getCursos();
-
-        let cursoId = 0
-        let nome = ""
-        let departamentoId = 0
+       var query = ""
 
         for (let i = 0; i < cursos.length; i++) {
-            nome = cursos[i];
-            cursoId = i + 1;
-            var sql = "INSERT INTO curso (curso_id, nome) VALUES ($1, $2)";
-            client.query(sql, [cursoId, nome], (err, result) => {
-                if (err) throw err;
-                console.log("Dados inseridos na tabela cursos")
-            })
+            var nome = cursos[i];
+            var cursoId = i + 1;
+            var departamentoId = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            query = query + "INSERT INTO curso (curso_id, nome, departamento_id) VALUES (" + cursoId + ", '" + nome + "', " + departamentoId + "); \n";
         }
+
+        console.log(query);
+        client.query(query, (err, result) => {
+            if (err) throw err;
+            console.log("Dados inseridos na tabela cursos")
+        })
     }
 
-    insertDataToDisciplinaTable(itensCount) {
+    insertDataToDisciplinaTable() {
         /*
         INSERT INTO Disciplinas (Nome, Curso_ID) VALUES ("Ecologia", 1);
         */
 
         const disciplina = generator.getDisciplinas();
-
-        let disciplinaId = 0
-        let nome = ""
-        let cursoId = 0
+        var query = ""
 
         for (let i = 0; i < disciplina.length; i++) {
-            nome = disciplina[i];
-            disciplinaId = i + 1;
-            var sql = "INSERT INTO disciplina (disciplina_id, nome) VALUES ($1, $2)";
-            client.query(sql, [disciplinaId, nome], (err, result) => {
-                if (err) throw err;
-                console.log("Dados inseridos na tabela cursos")
-            })
+            var nome = disciplina[i];
+            var disciplinaId = i + 1;
+            var cursoId = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            query = query + "INSERT INTO disciplina (disciplina_id, nome, curso_id) VALUES (" + disciplinaId + ", '" + nome + "', " + cursoId + "); \n";
         }
+
+        console.log(query);
+        client.query(query, (err, result) => {
+            if (err) throw err;
+            console.log("Dados inseridos na tabela cursos")
+        })
     }
 
     insertDataToMatrizCurricularTable(itensCount) {
