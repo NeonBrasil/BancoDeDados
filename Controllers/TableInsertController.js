@@ -14,6 +14,7 @@ class TableInsertController {
         this.insertDataToMatriculaTable()
         this.insertDataToDisciplinaMinistradaTable()
         this.insertDataToTCCTable()
+        this.insertUpdatesToTables()
         return;
     }
 
@@ -24,7 +25,7 @@ class TableInsertController {
             var alunoID = i+1
             var nome = generator.getRandomName()
             var email = generator.getRandomEmail()
-            query = query + "INSERT INTO alunos (aluno_id, nome, email) VALUES (); \n"
+            query = query + "INSERT INTO aluno (aluno_id, nome, email) VALUES (" + alunoID + ", '" + nome + "', '" + email + "'); \n"
         }
 
         console.log(query);
@@ -41,7 +42,7 @@ class TableInsertController {
             var professorID = i+1
             var nome = generator.getRandomName()
             var email = generator.getRandomEmail()
-            query = query + "INSERT INTO alunos (professor_id, nome, email, chefe_departamento) VALUES (); \n"
+            query = query + "INSERT INTO alunos (professor_id, nome, email, chefe_departamento) VALUES (" + professorID + ", '" + nome + "', '" + email + "', null); \n"
         }
         
         console.log(query)
@@ -160,6 +161,10 @@ class TableInsertController {
             if (err) throw err;
             console.log("Dados inseridos na tabela tcc")
         })
+    }
+
+    insertUpdatesToTables() {
+
     }
 }
 
