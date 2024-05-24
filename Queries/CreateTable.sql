@@ -57,13 +57,11 @@ CREATE TABLE IF NOT EXISTS DisciplinaMinistrada (
 );
  
 CREATE TABLE IF NOT EXISTS TCC (
-    TCC_id INT PRIMARY KEY,
-    titulo VARCHAR(255),
+    titulo VARCHAR(255)
     aluno_id INT,
-    professor_id INT,
-    ano INT,
-    semestre VARCHAR(10)
-);       
+    grupo_id INT,
+    professor_id INT
+);
  
 alter table departamento ADD CONSTRAINT fk_dpto_profs FOREIGN KEY (chefe_id) REFERENCES professor(professor_id);
 alter table curso ADD CONSTRAINT fk_curso_dpto FOREIGN KEY (departamento_id) REFERENCES departamento(departamento_id);

@@ -5,14 +5,14 @@ class TableInsertController {
     constructor() {}
 
     insertDataToAllTables() {
-        // this.insertDataToAlunoTable()
-        // this.insertDataToProfessorTable()
-        // this.insertDataToDepartamentoTable()
-        // this.insertDataToCursoTable()
-        // this.insertDataToDisciplinaTable()
-        this.insertDataToMatrizCurricularTable()
-        this.insertDataToMatriculaTable()
-        this.insertDataToDisciplinaMinistradaTable()
+        this.insertDataToAlunoTable()
+        this.insertDataToProfessorTable()
+        this.insertDataToDepartamentoTable()
+        this.insertDataToCursoTable()
+        this.insertDataToDisciplinaTable()
+        // this.insertDataToMatrizCurricularTable()
+        // this.insertDataToMatriculaTable()
+        // this.insertDataToDisciplinaMinistradaTable()
         this.insertDataToTCCTable()
         return;
     }
@@ -86,7 +86,7 @@ class TableInsertController {
         console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
-            console.log("Dados inseridos na tabela cursos")
+            console.log("Dados inseridos na tabela curso")
         })
     }
 
@@ -166,20 +166,40 @@ class TableInsertController {
         })
     }
 
-    insertDataToTCCTable(itensCount) {
+    insertDataToTCCTable() {
         var query = ""
 
-        for (let i = 0; i < itensCount; i++) {
-            var departamentoID = i+1
-            var titulo = generator.getRandomName()
-            var ano = generator.getRandomName()
-            var semestre = generator.getRandomName()
-            query = query + "INSERT INTO tcc (TCC_id, titulo, aluno_id, professor_id, ano, semestre) VALUES (); \n"
+        for (let i = 0; i < 20; i++) {
+            var titulo = generator.getRandomTccTitle()
+            var alunoID = i+1
+            var grupoID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            var professorID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            
+            query = query + "INSERT INTO tcc (aluno_id, grupo_id) VALUES (" + alunoID + ", " + grupoID + "); \n"
         }
 
+        console.log(query);
         client.query(query, (err, result) => {
             if (err) throw err;
+            this.updateTccTable()
             console.log("Dados inseridos na tabela tcc")
+        })
+    }
+
+    updateTccTable() {
+        var query = ""
+
+        for (let i = 0; i < 20; i++) {
+            var titulo = generator.getRandomTccTitle()
+            var professorID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            
+            query = query + "UPDATE tcc SET titulo = '" + titulo + "', professor_id = " + professorID + " WHERE grupo_id = " + i + ";\n "
+        }
+
+        console.log(query);
+        client.query(query, (err, result) => {
+            if (err) throw err;
+            console.log("Dados atualizados na tabela tcc")
         })
     }
 }

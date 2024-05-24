@@ -149,6 +149,45 @@ class DataGenerator {
 
         return disciplinas;
     }
+
+    getRandomTccTitle() {
+        const nameData = [
+            'A Influência das Redes Sociais no Comportamento do Consumidor',
+            'Desenvolvimento de um Sistema de Gestão Escolar com Interface Web',
+            'Estudo Comparativo de Algoritmos de Machine Learning para Previsão de Vendas',
+            'O Impacto da Transformação Digital nas Empresas Tradicionais',
+            'Análise de Segurança em Aplicações Web: Vulnerabilidades e Soluções',
+            'A Importância da User Experience (UX) no Desenvolvimento de Aplicativos Móveis',
+            'Blockchain: Aplicações e Desafios na Área Financeira',
+            'Inteligência Artificial e Ética: Implicações Sociais e Morais',
+            'Desenvolvimento de um Chatbot para Atendimento ao Cliente Utilizando Processamento de Linguagem Natural',
+            'A Utilização de Big Data na Tomada de Decisões Empresariais',
+            'Energia Renovável: Tecnologias e Perspectivas Futuras',
+            'Análise da Eficiência de Técnicas de SEO em E-commerce',
+            'Aplicações de Realidade Aumentada na Educação',
+            'Desenvolvimento de um Sistema de Monitoramento de Saúde com IoT',
+            'Gamificação no Ambiente Corporativo: Benefícios e Desafios',
+            'O Uso de Tecnologias de Cloud Computing em Startups',
+            'Desenvolvimento de um Aplicativo de Gestão Financeira Pessoal',
+            'A Influência da Cultura Organizacional na Inovação',
+            'Automação Residencial: Tecnologias e Aplicações',
+            'Impactos da Internet das Coisas (IoT) na Indústria 4.0',
+            'A Evolução do Direito Trabalhista no Brasil',
+            'Análise dos Efeitos da Globalização na Cultura Local',
+            'A Importância da Nutrição no Desempenho Esportivo',
+            'Impactos das Mudanças Climáticas na Agricultura Sustentável',
+            'O Papel da Educação Financeira nas Escolas Brasileiras',
+            'A Influência da Mídia na Formação da Opinião Pública',
+            'Estudo sobre a Violência Doméstica e os Mecanismos de Apoio às Vítimas',
+            'A Gestão de Resíduos Sólidos em Grandes Centros Urbanos',
+            'A Importância da Saúde Mental no Ambiente de Trabalho',
+            'A Participação das Mulheres na Política Brasileira'
+        ]
+
+        const randomIndex = Math.floor(Math.random() * nameData.length);
+
+        return nameData[randomIndex];
+    }
 }
 
 const generator = new DataGenerator();

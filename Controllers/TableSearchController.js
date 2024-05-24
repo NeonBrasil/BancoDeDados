@@ -72,8 +72,26 @@ class TableSearchController {
         })
     }
 
-    buscarGrupoTCC() {
-        //Saber quais alunos formaram um grupo de TCC e qual professor foi o orientador
+    buscarGrupoTCC(grupoID) {
+        var query = `
+            select  tcc.titulo
+                    ,tcc.aluno_id 
+                    ,aluno.nome as nome_aluno
+                    ,tcc.grupo_id
+                    ,tcc.professor_id
+                    ,professor.nome as nome_professor
+            from tcc
+            left join professor on professor.professor_id = tcc.professor_id 
+            left join aluno on aluno.aluno_id = tcc.aluno_id 
+            where grupo_id = $1
+        `
+        client.query(query, [grupoID], (err, result) => {
+            console.log("Query:" + query);
+            if (err) throw err;
+            console.log("RESULT") 
+            console.log(result.rows)
+        })
+
     }
 }
 

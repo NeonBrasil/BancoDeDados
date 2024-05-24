@@ -27,11 +27,8 @@ class TableCreationController {
         */
         const sql = "CREATE TABLE IF NOT EXISTS Aluno (aluno_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100));"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Alunos")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Aluno")
         })
     }
 
@@ -46,11 +43,8 @@ class TableCreationController {
 
         const sql = "CREATE TABLE IF NOT EXISTS Professor (professor_id INT PRIMARY KEY,nome VARCHAR(100),email VARCHAR(100));"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Professores")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Professor")
         })
     }
 
@@ -65,11 +59,8 @@ class TableCreationController {
 
         const sql = "CREATE TABLE IF NOT EXISTS Departamento (departamento_id INT PRIMARY KEY,nome VARCHAR(100),chefe_ID INT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Departamentos")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Departamento")
         })
     }
 
@@ -84,11 +75,8 @@ class TableCreationController {
 
         const sql = "CREATE TABLE IF NOT EXISTS Curso (curso_id INT PRIMARY KEY,nome VARCHAR(100),departamento_id INT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Cursos")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Curso")
         })
     }
 
@@ -106,11 +94,8 @@ class TableCreationController {
         
         const sql = "CREATE TABLE IF NOT EXISTS Disciplina (disciplina_id INT PRIMARY KEY,nome VARCHAR(100),curso_ID INT, professor_id INT, semestre INT, ano INT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Disciplinas")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Disciplina")
         })
     }
 
@@ -127,11 +112,8 @@ class TableCreationController {
         
         const sql = "CREATE TABLE IF NOT EXISTS MatrizCurricular (matriz_id INT PRIMARY KEY,curso_id INT,disciplina_id INT,semestre_recomendado INT,carga_horaria INT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela MatrizCurricular")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Matriz Curricular")
         })
     }
 
@@ -149,11 +131,8 @@ class TableCreationController {
 
         const sql = "CREATE TABLE IF NOT EXISTS Matricula (matricula_id INT PRIMARY KEY,aluno_id INT,disciplina_id INT,ano INT,semestre VARCHAR(10),nota_final FLOAT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela Matriculas")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Matricula")
         })
     }
 
@@ -170,33 +149,25 @@ class TableCreationController {
 
         const sql = "CREATE TABLE IF NOT EXISTS DisciplinaMinistrada (disciplina_ministrada_id INT PRIMARY KEY,professor_id INT,disciplina_id INT,ano INT,semestre VARCHAR(10));"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela DisciplinasMinistradas")
-            }
+            if (err) throw err;
+            console.log("Criou tabela Disciplina Ministrada")
         })
     }
 
     createTCCTable() {
         /*
         CREATE TABLE IF NOT EXISTS TCC (
-            TCC_id INT PRIMARY KEY,
             titulo VARCHAR(255),
             aluno_id INT,
-            professor_id INT,
-            ano INT,
-            semestre VARCHAR(10)
+            grupo_id INT,
+            professor_id INT
         );
         */
         
-        const sql = "CREATE TABLE IF NOT EXISTS TCC (TCC_id INT PRIMARY KEY,titulo VARCHAR(255),aluno_id INT,professor_id INT,ano INT,semestre VARCHAR(10));"
+        const sql = "CREATE TABLE IF NOT EXISTS TCC (titulo VARCHAR(255),aluno_id INT,grupo_id INT,professor_id INT);"
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Criou tabela TCCs")
-            }
+            if (err) throw err;
+            console.log("Criou tabela TCC")
         })
     }
 
@@ -216,7 +187,7 @@ class TableCreationController {
         alter table disciplinaministrada ADD CONSTRAINT fk_discmin_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
         alter table disciplinaministrada ADD CONSTRAINT fk_discmin_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
 
-        alter table tcc ADD CONSTRAINT fk_tcc_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);
+        alter table tcc ADD CONSTRAINT fk_tcc_aluno FOREIGN KEY (alunos_id) REFERENCES aluno(aluno_id);
         alter table tcc ADD CONSTRAINT fk_tcc_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
         */
 
@@ -234,11 +205,8 @@ class TableCreationController {
         sql = sql + "alter table tcc ADD CONSTRAINT fk_tcc_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);"
 
         client .query(sql, (err, result) => {
-            if (err) {
-                console.log("deu erro")
-            }else{
-                console.log("Atualizou as tabelas com os FKs")
-            }
+            if (err) throw err;
+            console.log("Atualizou as tabelas com os FKs")
         })
     }
 }

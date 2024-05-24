@@ -28,16 +28,14 @@ class main {
 
     listarFormandos() {
         tableSearchController.listarFormandos()
-        //Listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano
     }
 
     listarChefesDeDepartamento() {
         tableSearchController.listarChefesDeDepartamento()
     }
 
-    buscarGrupoTCC() {
-        tableSearchController.buscarGrupoTCC()
-        //Saber quais alunos formaram um grupo de TCC e qual professor foi o orientador
+    buscarGrupoTCC(grupoID) {
+        tableSearchController.buscarGrupoTCC(grupoID)
     }
 }
 
@@ -46,7 +44,7 @@ const MAIN = new main
 //Por favor use uma função de cada vez
 
 //Função usada para remover todas as tabelas do banco de dados
-// MAIN.limparBanco()
+MAIN.limparBanco()
 
 //Função para criar todas as tabelas 
 // MAIN.adicionarTabelas()
@@ -56,11 +54,18 @@ const MAIN = new main
 
 //Função para lista o histórico escolar de qualquer aluno, retornando o código e nome da disciplina, semestre e ano que a disciplina foi cursada e nota final
 //No parametro da função passe um valor de 1-20 para escolher o id do alunuo que deseja realizar a busca
-// MAIN.buscarHistoricoEscolar(4)
+// MAIN.buscarHistoricoEscolar(3)
 
 //Função para listar o histórico de disciplinas ministradas por qualquer professor, com semestre e ano
 //No parametro da função passe um valor de 1-20 para escolher o id do professor que deseja realizar a busca
-// MAIN.buscarHistóricoDeDisciplinas(7);
+// MAIN.buscarHistóricoDeDisciplinas(2);
+
+//Função para listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano
+// MAIN.listarFormandos();
 
 //Funçao para listar todos os professores que são chefes de departamento, junto com o nome do departamento
 // MAIN.listarChefesDeDepartamento();
+
+//Função para saber quais alunos formaram um grupo de TCC e qual professor foi o orientador
+//No parametro da função passe um valor de 1-20 para escolher o id do grupo que deseja realizar a busca
+// MAIN.buscarGrupoTCC(3);
