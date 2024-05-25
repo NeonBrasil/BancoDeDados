@@ -1,6 +1,5 @@
-# BancoDeDados
+# BancoDeDados #
 
----
 Diagrama Relacional
 ---
 ``` mermaid
@@ -86,10 +85,15 @@ erDiagram
 
 
 ```
-## Código feito em Javascript para criação, inserção e consultas no banco de dados. ##
+Código feito em Javascript para criação, inserção e consultas no banco de dados. 
 ---
-Como funciona:
 
----
-Queries de consulta:
----
+<h2> Como funciona: </h2>
+<p> As queries são definidas por funções criadas nos controladores e chamadas no arquivo main.js. <br> </p>
+<p> Para executá-las, basta descomentar a função desejada no final do arquivo main.js e para rodar o código, basta inserir o comando "node main.js" no terminal. <br> </p>
+<br>
+<p> O banco já está configurado para conectar ao usuário pré-definido no arquivo "db.js", sendo assim, não é necessário configurar um novo usuário para realizar a conexão. <br> </p>
+
+<h2> Queries: </h2>
+<p> Todas as queries podem ser localizadas dentro da pasta "Queries" no arquivo do código. <br> </p>
+
