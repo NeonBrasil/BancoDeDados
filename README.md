@@ -18,77 +18,73 @@ erDiagram
     Disciplinas ||--o{ Matriculas : "registrada em"
     Disciplinas ||--o{ DisciplinasMinistradas : "ensinada em"
 
-    Alunos {
-        int AlunoID PK
-        string Nome
-        date DataNascimento
-        string Email
+    Aluno {
+        int aluno_id PK
+        string nome
+        string email
     }
 
-    Professores {
-        int ProfessorID PK
-        string Nome
-        string Email
-        bool ChefeDepartamento
+    Professor {
+        int professor_id PK
+        string nome
+        string email
     }
 
-    Departamentos {
-        int DepartamentoID PK
-        string Nome
-        int ChefeID FK
+    Departamento {
+        int departamento_id PK
+        string nome
+        int chefe_id FK
     }
 
-    Cursos {
-        int CursoID PK
-        string Nome
-        int DepartamentoID FK
+    Curso {
+        int curso_id PK
+        string nome
+        int departamento_id FK
     }
 
-    Disciplinas {
-        int DisciplinaID PK
-        string Nome
-        int CursoID FK
+    Disciplina {
+        int disciplina_id PK
+        string nome
+        int curso_id FK
+        int professor_id FK
+        int semestre
+        int ano
     }
 
     MatrizCurricular {
-        int MatrizID PK
-        int CursoID FK
-        int DisciplinaID FK
-        int SemestreRecomendado
-        int CargaHoraria
+        int matriz_id PK
+        int curso_id FK
+        int disciplina_id FK
+        int semestre_recomendado
+        int carga_horaria
     }
 
-    Matriculas {
-        int MatriculaID PK
-        int AlunoID FK
-        int DisciplinaID FK
-        int Ano
-        string Semestre
-        float NotaFinal
+    Matricula {
+        int matricula_id PK
+        int aluno_id FK
+        int disciplina_id FK
+        int ano
+        string semestre
+        float nota_final
     }
 
-    DisciplinasMinistradas {
-        int DisciplinaMinistradaID PK
-        int ProfessorID FK
-        int DisciplinaID FK
-        int Ano
-        string Semestre
+    DisciplinaMinistrada {
+        int disciplina_ministrada_id PK
+        int professor_id FK
+        int disciplina_id FK
+        int ano
+        string semestre
     }
 
-    TCCs {
-        int TCCID PK
-        string Titulo
-        int AlunoID FK
-        int ProfessorID FK
-        int Ano
-        string Semestre
+    TCC {
+        string titulo
+        int aluno_id FK
+        int grupo_id
+        int professor_id FK
     }
 
 
 
 ```
 
-EXEMPLO DE COMO DEVE SER:(JUNTAR DISCIPLINA COM DISCIPLINA MINISTRADA PARA SER O HIST DO PROFESSOR, E JUNTARÁ O TCC COM ALUNO)
-
-![image](https://github.com/NeonBrasil/BancoDeDados/assets/81389290/6e27c0a0-f8b1-4277-8238-1d0c4cd32245)
 
