@@ -1,0 +1,7 @@
+class FileGenerator {
+    constructor() {}
+
+    transformStringToFile() {
+        
+    }
+}
