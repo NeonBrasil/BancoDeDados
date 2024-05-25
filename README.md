@@ -6,17 +6,17 @@ TESTE
 ``` mermaid
 erDiagram
 
-    Alunos ||--o{ Matriculas : "está matriculado"
-    Alunos ||--o{ TCCs : "participa"
-    Professores ||--o{ Departamentos : "chefia"
-    Professores ||--o{ DisciplinasMinistradas : "ministra"
-    Professores ||--o{ TCCs : "orienta"
-    Departamentos ||--|{ Cursos : "inclui"
-    Cursos ||--|{ Disciplinas : "contém"
-    Cursos ||--|{ MatrizCurricular : "define"
-    Disciplinas ||--|{ MatrizCurricular : "parte de"
-    Disciplinas ||--o{ Matriculas : "registrada em"
-    Disciplinas ||--o{ DisciplinasMinistradas : "ensinada em"
+    Aluno ||--o{ Matricula : "está matriculado"
+    Aluno ||--o{ TCC : "participa"
+    Professor ||--o{ Departamento : "chefia"
+    Professor ||--o{ DisciplinaMinistrada : "ministra"
+    Professor ||--o{ TCC : "orienta"
+    Departamento ||--|{ Curso : "inclui"
+    Curso ||--|{ Disciplina : "contém"
+    Curso ||--|{ MatrizCurricular : "define"
+    Disciplina ||--|{ MatrizCurricular : "parte de"
+    Disciplina ||--o{ Matricula : "registrada em"
+    Disciplina ||--o{ DisciplinaMinistrada : "ensinada em"
 
     Aluno {
         int aluno_id PK
