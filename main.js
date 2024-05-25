@@ -26,8 +26,8 @@ class main {
         tableSearchController.buscarHistóricoDeDisciplinas(professorID)
     }
 
-    listarFormandos() {
-        tableSearchController.listarFormandos()
+    listarFormandos(semestre, ano) {
+        tableSearchController.listarFormandos(semestre, ano)
     }
 
     listarChefesDeDepartamento() {
@@ -44,7 +44,7 @@ const MAIN = new main
 //Por favor use uma função de cada vez
 
 //Função usada para remover todas as tabelas do banco de dados
-MAIN.limparBanco()
+// MAIN.limparBanco()
 
 //Função para criar todas as tabelas 
 // MAIN.adicionarTabelas()
@@ -61,7 +61,8 @@ MAIN.limparBanco()
 // MAIN.buscarHistóricoDeDisciplinas(2);
 
 //Função para listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano
-// MAIN.listarFormandos();
+//No parametro da função passe um valor de 1-2 para escolher o semestre e um valor de 2000-2024 para escolher o ano que deseja realizar a busca
+// MAIN.listarFormandos(1, 2023);
 
 //Funçao para listar todos os professores que são chefes de departamento, junto com o nome do departamento
 // MAIN.listarChefesDeDepartamento();

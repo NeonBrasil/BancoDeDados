@@ -49,8 +49,25 @@ class TableSearchController {
         })
     }
 
-    listarFormandos() {
+    listarFormandos(semestre, ano) {
         //Listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano
+        var query = `
+            SELECT DISTINCT a.aluno_id, a.nome, AVG(m.nota_final) as nota_final
+            FROM aluno a
+            JOIN matricula m ON a.aluno_id = m.aluno_id
+            JOIN MatrizCurricular mc ON m.curso_id = mc.curso_id
+            WHERE m.aprovado = TRUE
+            AND m.semestre = $1
+            AND m.ano = $2
+            GROUP BY a.aluno_id, a.nome
+            HAVING COUNT(DISTINCT mc.curso_id) = (SELECT COUNT(curso_id) FROM MatrizCurricular);
+        `
+        client.query(query,[semestre, ano], (err, result) => {
+            console.log("Query:" + query);
+            if (err) throw err;
+            console.log("RESULT") 
+            console.log(result.rows)
+        })
     }
 
     listarChefesDeDepartamento() {
@@ -91,7 +108,6 @@ class TableSearchController {
             console.log("RESULT") 
             console.log(result.rows)
         })
-
     }
 }
 

@@ -11,8 +11,7 @@ class TableInsertController {
         this.insertDataToCursoTable()
         this.insertDataToDisciplinaTable()
         // this.insertDataToMatrizCurricularTable()
-        // this.insertDataToMatriculaTable()
-        // this.insertDataToDisciplinaMinistradaTable()
+        this.insertDataToMatriculaTable()
         this.insertDataToTCCTable()
         return;
     }
@@ -134,6 +133,16 @@ class TableInsertController {
     }
 
     insertDataToMatriculaTable(itensCount) {
+        /*
+            matricula_id INT PRIMARY KEY,
+            aluno_id INT,
+            curso_id INT,
+            ano INT,
+            semestre INT,
+            nota_final FLOAT,
+            aprovado BOOLEAN
+        */
+
         var query = ""
 
         for (let i = 0; i < itensCount; i++) {
@@ -141,28 +150,12 @@ class TableInsertController {
             var ano = generator.getRandomName()
             var semestre = generator.getRandomName()
             var notaFinal = generator.getRandomName()
-            query = query + "INSERT INTO matricula (matricula_id, aluno_id, disciplina_id, ano, semestre, nota_final) VALUES (); \n"
+            query = query + "INSERT INTO matricula (matricula_id, aluno_id, curso_id, ano, semestre, nota_final, aprovado) VALUES (" + "); \n"
         }
 
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela matricula")
-        })
-    }
-
-    insertDataToDisciplinaMinistradaTable(itensCount) {
-        var query = ""
-
-        for (let i = 0; i < itensCount; i++) {
-            var departamentoID = i+1
-            var ano = generator.getRandomName()
-            var semestre = generator.getRandomName()
-            query = query + "INSERT INTO disciplinaministrada (disciplina_ministrada_id, professor_id, disciplina_id, ano, semestre) VALUES (); \n"
-        }
-
-        client.query(query, (err, result) => {
-            if (err) throw err;
-            console.log("Dados inseridos na tabela disciplina ministrada")
         })
     }
 
