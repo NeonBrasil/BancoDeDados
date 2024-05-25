@@ -1,7 +1,7 @@
 # BancoDeDados
 
 ---
-TESTE
+Diagrama Relacional
 ---
 ``` mermaid
 erDiagram
@@ -86,5 +86,10 @@ erDiagram
 
 
 ```
-
-
+Código <br>
+Feito em Javascript para criação, inserção e consultas no banco de dados.
+---
+Como funciona:
+---
+Queries de consulta:
+---
