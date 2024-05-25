@@ -1,4 +1,7 @@
 # BancoDeDados #
+<p> Arthur Soares Sousa - 22.221.008-0 </p>
+<p> Caique Cicarelli - 22.221.005-6 </p>
+<p> Danilo David Miranda - 22.221.037-9 </p>
 
 Diagrama Relacional
 ---
