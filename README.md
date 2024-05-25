@@ -8,14 +8,12 @@ erDiagram
     Aluno ||--o{ Matricula : "está matriculado"
     Aluno ||--o{ TCC : "participa"
     Professor ||--o{ Departamento : "chefia"
-    Professor ||--o{ DisciplinaMinistrada : "ministra"
     Professor ||--o{ TCC : "orienta"
     Departamento ||--|{ Curso : "inclui"
     Curso ||--|{ Disciplina : "contém"
     Curso ||--|{ MatrizCurricular : "define"
     Disciplina ||--|{ MatrizCurricular : "parte de"
     Disciplina ||--o{ Matricula : "registrada em"
-    Disciplina ||--o{ DisciplinaMinistrada : "ensinada em"
 
     Aluno {
         int aluno_id PK
@@ -65,14 +63,6 @@ erDiagram
         int ano
         string semestre
         float nota_final
-    }
-
-    DisciplinaMinistrada {
-        int disciplina_ministrada_id PK
-        int professor_id FK
-        int disciplina_id FK
-        int ano
-        string semestre
     }
 
     TCC {
