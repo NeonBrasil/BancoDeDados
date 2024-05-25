@@ -86,10 +86,10 @@ erDiagram
 
 
 ```
-Código <br>
-Feito em Javascript para criação, inserção e consultas no banco de dados.
+## Código feito em Javascript para criação, inserção e consultas no banco de dados. ##
 ---
 Como funciona:
+
 ---
 Queries de consulta:
 ---
