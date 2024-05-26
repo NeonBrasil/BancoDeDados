@@ -197,7 +197,7 @@ class TableInsertController {
             var titulo = generator.getRandomTccTitle()
             var professorID = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
             
-            query = query + "UPDATE tcc SET titulo = '" + titulo + "', professor_id = " + professorID + " WHERE grupo_id = " + i + ";\n "
+            query = query + "UPDATE tcc SET titulo = '" + titulo + "', professor_id = " + professorID + " WHERE grupo_id = " + i + ";\n"
         }
 
         console.log(query);

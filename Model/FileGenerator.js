@@ -7,7 +7,7 @@ class FileGenerator {
         var newValue = queries
         console.log(queries)
 
-        fs.writeFile('Queries/InsertToTable.txt', newValue, 'utf-8', function (err) {
+        fs.writeFile('Queries/InsertToTable.sql', newValue, 'utf-8', function (err) {
             if (err) throw err;
             console.log('filelistAsync complete');
         });

@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS Matricula (
     matricula_id INT PRIMARY KEY,
     aluno_id INT,
     curso_id INT,
+    disciplina_id INT
     ano INT,
     semestre INT,
     nota_final FLOAT,
@@ -64,6 +65,7 @@ alter table matrizcurricular ADD CONSTRAINT fk_matrizc_curso FOREIGN KEY (curso_
 alter table matrizcurricular ADD CONSTRAINT fk_matrizc_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
 alter table matricula ADD CONSTRAINT fk_matricula_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);
 alter table matricula ADD CONSTRAINT fk_matricula_curso FOREIGN KEY (curso_id) REFERENCES curso(curso_id);
+alter table matricula ADD CONSTRAINT fk_matricula_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
 alter table disciplinaministrada ADD CONSTRAINT fk_discmin_profs FOREIGN KEY (professor_id) REFERENCES professor(professor_id);
 alter table disciplinaministrada ADD CONSTRAINT fk_discmin_disc FOREIGN KEY (disciplina_id) REFERENCES disciplina(disciplina_id);
 alter table tcc ADD CONSTRAINT fk_tcc_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(aluno_id);
