@@ -50,7 +50,7 @@ const MAIN = new main
 // MAIN.adicionarTabelas()
 
 //Função para popular todas as tabelas
-// MAIN.popularTabelas()
+MAIN.popularTabelas()
 
 //Função para lista o histórico escolar de qualquer aluno, retornando o código e nome da disciplina, semestre e ano que a disciplina foi cursada e nota final
 //No parametro da função passe um valor de 1-20 para escolher o id do alunuo que deseja realizar a busca

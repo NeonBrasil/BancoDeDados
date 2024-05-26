@@ -8,7 +8,6 @@ class TableDeleteController {
         this.dropTccsTable()
         this.dropAlunosTable()
         this.dropMatrizCurricularTable()
-        this.dropDisciplinasMinistradasTable()
         this.dropDisciplinasTable()
         this.dropCursosTable()
         this.dropDepartamentosTable()
@@ -56,17 +55,6 @@ class TableDeleteController {
                 console.log('deu bom não...', err);
             } else {
                 console.log('Tabela matriz curricular deletada')
-            }
-        })
-    }
-
-    dropDisciplinasMinistradasTable() {
-        const sql = 'DROP TABLE defaultdb.disciplinaministrada';
-        client.query(sql, (err, result) => {
-            if (err) {
-                console.log('deu bom não...', err);
-            } else {
-                console.log('Tabela disciplina ministrada deletada')
             }
         })
     }

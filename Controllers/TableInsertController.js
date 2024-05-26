@@ -1,8 +1,11 @@
 import client from './../db.js'
 import generator from "../Model/DataGenerator.js";
+import fileGenerator from "../Model/FileGenerator.js";
 
 class TableInsertController {
     constructor() {}
+
+    queries = ""
 
     insertDataToAllTables() {
         this.insertDataToAlunoTable()
@@ -29,6 +32,7 @@ class TableInsertController {
 
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela aluno")
@@ -46,6 +50,7 @@ class TableInsertController {
         }
         
         console.log(query)
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela professor")
@@ -64,6 +69,7 @@ class TableInsertController {
         }
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela departamento")
@@ -83,6 +89,7 @@ class TableInsertController {
         }
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela curso")
@@ -106,6 +113,7 @@ class TableInsertController {
         }
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela disciplina")
@@ -126,6 +134,7 @@ class TableInsertController {
         }
         
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela matriz curricular")
@@ -153,6 +162,7 @@ class TableInsertController {
             query = query + "INSERT INTO matricula (matricula_id, aluno_id, curso_id, ano, semestre, nota_final, aprovado) VALUES (" + "); \n"
         }
 
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados inseridos na tabela matricula")
@@ -172,6 +182,7 @@ class TableInsertController {
         }
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             this.updateTccTable()
@@ -190,10 +201,16 @@ class TableInsertController {
         }
 
         console.log(query);
+        this.queries = this.queries + query + "\n"
         client.query(query, (err, result) => {
             if (err) throw err;
             console.log("Dados atualizados na tabela tcc")
+            this.insertQueriesToFile()
         })
+    }
+
+    insertQueriesToFile() {
+        fileGenerator.writeFileAsync(this.queries)
     }
 }
 
